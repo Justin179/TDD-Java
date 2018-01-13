@@ -1,17 +1,10 @@
 package kata.game.test;
 
 import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.*;
 import kata.game.Game;
 
-import static org.junit.Assert.*;
-import org.junit.*;
-
 public class GameTest {
-
 	private Game g;		// 把σ跑计 Game instance
 	
 	@Before
@@ -46,11 +39,6 @@ public class GameTest {
 		// 耞ēゑ癸
 		assertEquals(expected, actual);
 	}
-	
-	private void rollMany(int n, int pins) {
-		for (int i = 0; i < n; i++)
-			g.щ瞴(pins);
-	}
 		
 	@Test
 	// 代刚產俱ЫΤΩ干い+Ω璸だщ瞴だ计
@@ -70,6 +58,42 @@ public class GameTest {
 	private void rollSPare() {
 		g.щ瞴(5);
 		g.щ瞴(5);
+	}
+	
+	@Test
+	// 代刚產俱ЫΤΩい+Ω璸だㄢΩщ瞴だ计
+	//  19 Ωщ瞴诀穦ㄤ緇 16 Ω0だ
+	public void testOneStrike() throws Exception {
+		int expected = 24;
+		int actual;		
+		
+		this.rollStrike();
+		g.щ瞴(3);
+		g.щ瞴(4);
+		rollMany(16, 0);
+		actual = g.璸だ();
+		
+		assertEquals(expected, actual);
+	}
+	
+	private void rollStrike() {
+	    g.щ瞴(10); 
+	}
+	
+	@Test
+	// 代刚產┮Τ12Ωщ瞴羆眔だ计 (骸だ300だ)
+	public void testPerfectGame() throws Exception {
+		int expected = 300;
+		int actual;
+		
+		rollMany(12,10);
+		actual = g.璸だ();
+		
+		assertEquals(expected, actual);
 	}	
-
+	
+	private void rollMany(int n, int pins) {
+		for (int i = 0; i < n; i++)
+			g.щ瞴(pins);
+	}	
 }
